@@ -55,6 +55,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), function 
         },
       });
     }
+   
   }
 
   /**
