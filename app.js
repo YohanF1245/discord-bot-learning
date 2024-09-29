@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import {Client, GatewayIntentBits,PresenceUpdateStatus, ActivityType, Events} from 'discord.js';
 import {
   InteractionType,
   InteractionResponseType,
@@ -18,6 +19,18 @@ const PORT = process.env.PORT || 3000;
 
 // Store for in-progress games. In production, you'd want to use a DB
 const activeGames = {};
+
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+client.once(Events.ClientReady, readyClient => {
+  client.user.setStatus(PresenceUpdateStatus.Online);
+
+
+	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+});
+
+// Log in to Discord with your client's token
+
+
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
